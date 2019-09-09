@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block head %}
+<title>Login Page</title>
+{% endblock %} {% block content %}
+<div class="container">
+    <div class="col-md-4 offset-md-4">
+        <h2>Login here</h2>
+        {% if msg %} x {% endif %}
+        <hr>
+        <form method='post'>{% csrf_token %}
+            <input type="email" name="email" placeholder="email....." class="form-control"><br>
+            <input type="password" name="password" placeholder="password......" class="form-control"><br>
+            <button type='submit' class="btn btn-info btn-block">LOGIN</button>
+        </form>
+        <a href="{% url 'account:account_register' %}">
+            <button type='btn' class="btn btn-primary btn-block">REGISTER</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

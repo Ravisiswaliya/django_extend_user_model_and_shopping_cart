@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block head %}
+<title>Product list page</title>
+
+{% if messages %} {% for message in messages %}
+<script>
+    alert('{{ message }}')
+</script>
+{% endfor %} {% endif %} {% endblock %} {% block content %}
+
+<div class="container">
+    <h2 class="text-center">Filter Product</h2>
+    <hr>
+    <form method="get" class="form-inline">
+        {% load crispy_forms_tags %} {{ products.form | crispy }}
+        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+    </form>
+    <hr>
+
+
+    <h2 class="text-center">Products</h2>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'cart:product_create' %}">
+        <button type="btn" class="btn btn-info float-right">Add Product</button>
+    </a><br>{% endif %}
+    <hr>
+    <div class="row">
+        {% for product in products.qs %}
+        <div class="card" style="margin: 5px; padding: 5px;">
+            <h4>{{product.product_name}}</h4>
+            <p>Category:-{{product.product_cat}}</p>
+            <p>Brand:-{{product.product_brand}}</p>
+            <img class="circle" src="{{product.product_image.url}}" height="250px" width="250px"> <br>
+            <button class="btn btn-sm btn-block btn-info"><b>Price: {{product.product_price}}</b></button><br>
+            <a href="{% url 'cart:product_detail' product.id %}">
+                <button class="btn btn-sm btn-block btn-success">Go to detail</button>
+            </a>
+        </div> {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block head %}
+<title>Cart Detail</title>
+{% endblock %} {% block content %}
+<div class="container">
+    <h2 class="text-center">Cart Info</h2>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Product</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.product}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4 class="text-right">Total Price: {{total_price}}</h4>
+
+    <p class="text-right">
+        <a href="{% url 'cart:product_list' %}" class="btn btn-success">Continue shopping</a>
+
+    </p>
+</div>
+{% endblock %}

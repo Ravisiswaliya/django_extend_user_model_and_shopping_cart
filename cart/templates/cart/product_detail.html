@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block head %}
+<title>Product Detail page</title>
+{% endblock %} {% block content %}
+<div class="container"><br>
+    <a href="{% url 'cart:product_list' %}">Go Back</a>
+
+    <form action="{% url 'cart:cart_add' product.id  %}" method="post">{% csrf_token %} {{cart_product_form}}
+        <button type="btn" class="btn  btn-info float-right">Add To Cart</button>
+    </form>
+
+
+    <h2 class="text-center">{{product.product_name}}</h2>
+    <center><img src="{{product.product_image.url}}" height="400px" width="400px"></center>
+    <h4 class="text-center">Price: {{product.product_price}}</h4>
+    <p class="text-center">Category:{{product.product_cat}}</p>
+    <p class="text-center">Brand:{{product.product_brand}}</p>
+    <p class="text-center">Description:{{product.product_description}}</p>
+</div>
+{% endblock %}

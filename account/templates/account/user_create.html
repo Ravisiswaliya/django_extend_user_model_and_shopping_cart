@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block head %}
+<title>Register</title>
+{% endblock %} {% block content %}
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center">Register User</h2>
+        <hr>
+        <form method='post'>{% csrf_token %} {% load crispy_forms_tags %} {{form | crispy}}
+            <button type='submit' class="btn btn-info btn-block">CREATE</button>
+        </form>
+        <a href="{% url 'account:account_login' %}">
+            <button type='btn' class="btn btn-primary btn-block">LOGIN</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
